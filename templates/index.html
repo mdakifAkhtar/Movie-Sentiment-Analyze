@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Movie Sentiment Analyzer</title>
+
+<style>
+
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+}
+
+.container{
+width:520px;
+padding:40px;
+border-radius:20px;
+background: rgba(255,255,255,0.08);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border:1px solid rgba(255,255,255,0.2);
+box-shadow:0 15px 35px rgba(0,0,0,0.5);
+text-align:center;
+}
+
+h2{
+margin-bottom:10px;
+font-weight:600;
+}
+
+p{
+opacity:0.8;
+margin-bottom:25px;
+}
+
+textarea{
+width:100%;
+padding:15px;
+border-radius:12px;
+border:none;
+outline:none;
+background: rgba(255,255,255,0.15);
+color:white;
+font-size:15px;
+resize:none;
+}
+
+textarea::placeholder{
+color:#ddd;
+}
+
+button{
+margin-top:15px;
+padding:12px 30px;
+border-radius:30px;
+border:none;
+background: linear-gradient(45deg,#ff416c,#ff4b2b);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+box-shadow:0 5px 15px rgba(255,75,43,0.6);
+}
+
+.result{
+margin-top:25px;
+padding:15px;
+border-radius:12px;
+background: rgba(255,255,255,0.1);
+font-size:22px;
+}
+
+.confidence{
+    color:#d8f12f
+}
+
+.positive{
+color:#00ff9d;
+}
+
+.negative{
+color:#ff4b5c;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🎬 Movie Review Sentiment Analyzer</h2>
+
+<form action="/predict" method="post">
+
+<textarea name="review" rows="5" placeholder="Write a movie review..."></textarea>
+
+<br><br>
+
+<button type="submit">Predict Sentiment</button>
+
+</form>
+
+{% if prediction %}
+<div class="result">
+<h3 class="{{ color }}">
+{{ emoji }} {{ prediction }}
+</h3>
+<br>
+<p class="confidence"><b>Confidence: {{ confidence }}%</b></p>
+
+<p><b>Review:</b> {{ review }}</p>
+
+</div>
+
+{% endif %}
+<br><br>
+<p>AI powered movie sentiment prediction using LogisticRegression</p>
+</div>
+
+</body>
+</html>
